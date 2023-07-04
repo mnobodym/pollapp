@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="25dp"
+    tools:context=".Second_page_Adapter">
+
+
+    <Button
+        android:id="@+id/itemBtn"
+        android:layout_width="157dp"
+        android:layout_height="73dp"
+        android:text="Button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/viewCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="@+id/itemBtn"
+        app:layout_constraintEnd_toStartOf="@+id/viewPercent"
+        app:layout_constraintStart_toEndOf="@+id/itemBtn"
+        app:layout_constraintTop_toTopOf="@+id/itemBtn"
+        app:layout_constraintVertical_bias="0.509" />
+
+    <TextView
+        android:id="@+id/viewPercent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/viewCount"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/viewCount" />
+</androidx.constraintlayout.widget.ConstraintLayout>

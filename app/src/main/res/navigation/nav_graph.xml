@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/home_page">
+
+    <fragment
+        android:id="@+id/first_page"
+        android:name="com.example.poolapp.First_page"
+        android:label="fragment_first_page"
+        tools:layout="@layout/fragment_first_page" >
+        <action
+            android:id="@+id/action_first_page_to_home_page"
+            app:destination="@id/home_page"
+            app:popUpTo="@id/first_page"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_first_page_to_second_page"
+            app:destination="@id/second_page" />
+    </fragment>
+    <fragment
+        android:id="@+id/home_page"
+        android:name="com.example.poolapp.Home_page"
+        android:label="fragment_home_page"
+        tools:layout="@layout/fragment_home_page" >
+        <action
+            android:id="@+id/action_home_page_to_first_page"
+            app:destination="@id/first_page"/>
+    </fragment>
+    <fragment
+        android:id="@+id/second_page"
+        android:name="com.example.poolapp.Second_page"
+        android:label="fragment_second_page"
+        tools:layout="@layout/fragment_second_page" />
+</navigation>
