@@ -29,7 +29,7 @@ public class Second_page_Adapter extends RecyclerView.Adapter<Second_page_Adapte
         context = cntX;
         inputs = list;
         cntOfInput = new int[10];
-        for (int i=0; i<10; i++){
+        for (int i = 0; i < 10; i++) {
             cntOfInput[i] = 0;
         }
         sp = context.getSharedPreferences("saveData", Context.MODE_PRIVATE);
@@ -40,6 +40,7 @@ public class Second_page_Adapter extends RecyclerView.Adapter<Second_page_Adapte
         return inputs.size();
     }
 
+    @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
@@ -56,15 +57,12 @@ public class Second_page_Adapter extends RecyclerView.Adapter<Second_page_Adapte
         holder.percentOfInput.setText(percent + " %");
 
         int ps = position;
-        holder.buttonOfField.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        holder.buttonOfField.setOnClickListener(view -> {
 
-                cntOfInput[ps]++;
-                holder.countOfInput.setText(String.valueOf(cntOfInput[ps]));
-                updatePercent();
-                notifyDataSetChanged();
-            }
+            cntOfInput[ps]++;
+            holder.countOfInput.setText(String.valueOf(cntOfInput[ps]));
+            updatePercent();
+            notifyDataSetChanged();
         });
 
     }
@@ -78,7 +76,7 @@ public class Second_page_Adapter extends RecyclerView.Adapter<Second_page_Adapte
         BigDecimal sumOfCountsBD = new BigDecimal(sumOfCounts);
 
         BigDecimal tmp;
-        for (int i = 0; i< inputs.size(); i++) {
+        for (int i = 0; i < inputs.size(); i++) {
             tmp = new BigDecimal(cntOfInput[i]);
             percent = tmp.divide(sumOfCountsBD, 4, RoundingMode.CEILING);
 
@@ -90,7 +88,7 @@ public class Second_page_Adapter extends RecyclerView.Adapter<Second_page_Adapte
 
     private int getSumOfCounts() {
         int sumOfCounts = 0;
-        for (int i = 0; i< inputs.size(); i++) {
+        for (int i = 0; i < inputs.size(); i++) {
             sumOfCounts += cntOfInput[i];
         }
         return sumOfCounts;

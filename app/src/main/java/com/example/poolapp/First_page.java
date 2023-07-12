@@ -9,7 +9,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,43 +54,36 @@ public class First_page extends Fragment {
 
         list.setAdapter(adapterOfListView);
 
-        add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (inputBox.getText().toString().equals("")) {
-                    Toast.makeText(getContext(), "Insert one field in Box", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                String s = inputBox.getText().toString();
-                boolean isInInputs = false;
-                for (int i = 0; i< inputs.size(); i++){
-                    if (s.equalsIgnoreCase(inputs.get(i)))
-                        isInInputs = true;
-                }
-                if (isInInputs){
-                    Toast.makeText(getContext(), "this input in exist.", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                inputs.add(s);
-                addToShardPerformance(s);
-                adapterOfListView.notifyDataSetChanged();
-                inputBox.getText().clear();
+        add.setOnClickListener(view1 -> {
+            if (inputBox.getText().toString().equals("")) {
+                Toast.makeText(getContext(), "Insert one field in Box", Toast.LENGTH_SHORT).show();
+                return;
             }
+
+            String s = inputBox.getText().toString();
+            boolean isInInputs = false;
+            for (int i = 0; i < inputs.size(); i++) {
+                if (s.equalsIgnoreCase(inputs.get(i))) isInInputs = true;
+            }
+            if (isInInputs) {
+                Toast.makeText(getContext(), "this input in exist.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            inputs.add(s);
+            addToShardPerformance(s);
+            adapterOfListView.notifyDataSetChanged();
+            inputBox.getText().clear();
         });
 
-        go.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (inputs.size() <= 1) {
-                    Toast.makeText(getContext(), "Enter two or more field...", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                Bundle bundle = new Bundle();
-                bundle.putStringArrayList("inputs", inputs);
-                Navigation.findNavController(view).navigate(R.id.action_first_page_to_second_page, bundle);
+        go.setOnClickListener(view12 -> {
+            if (inputs.size() <= 1) {
+                Toast.makeText(getContext(), "Enter two or more field...", Toast.LENGTH_SHORT).show();
+                return;
             }
+            Bundle bundle = new Bundle();
+            bundle.putStringArrayList("inputs", inputs);
+            Navigation.findNavController(view12).navigate(R.id.action_first_page_to_second_page, bundle);
         });
     }
 

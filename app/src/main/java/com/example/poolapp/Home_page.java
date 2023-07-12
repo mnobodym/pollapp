@@ -33,11 +33,6 @@ public class Home_page extends Fragment {
 
         createPool = view.findViewById(R.id.createBtn);
 
-        createPool.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.action_home_page_to_first_page);
-            }
-        });
+        createPool.setOnClickListener(view1 -> Navigation.findNavController(view1).navigate(R.id.action_home_page_to_first_page));
     }
 }
