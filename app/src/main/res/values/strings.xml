@@ -6,4 +6,7 @@
     <string name="password">password</string>
     <string name="loginbtn">login</string>
     <string name="loading">loading…</string>
+    <string name="save">save</string>
+    <string name="start_poll">go to poll</string>
+    <string name="add_item_btn">add</string>
 </resources>

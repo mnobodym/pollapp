@@ -19,7 +19,7 @@ public class Login {
     private final String password;
     private final Context context;
     private String result;
-    private boolean login_auth = false;
+    private boolean login_auth = true;
 
     public Login(Context context, String username, String password) {
         this.context = context;

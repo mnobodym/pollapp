@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -19,6 +21,7 @@ public class PollPage extends Fragment {
     ArrayList<String> inputs;
     RecyclerView inputsRecycleView;
     PollPageAdapter recycleViewAdapter;
+    Button save_btn;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,5 +44,16 @@ public class PollPage extends Fragment {
 
         inputsRecycleView.setAdapter(recycleViewAdapter);
         inputsRecycleView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        save_btn = view.findViewById(R.id.save_button);
+        try {
+            save_btn.setOnClickListener(view1 -> {
+                SavePoll savePoll = new SavePoll();
+
+            });
+        }
+        catch (Exception e){
+            Toast.makeText(getContext(), "error: " + e, Toast.LENGTH_SHORT).show();
+        }
     }
 }
