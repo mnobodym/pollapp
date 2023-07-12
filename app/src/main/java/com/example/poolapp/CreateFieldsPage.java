@@ -20,13 +20,13 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class First_page extends Fragment {
+public class CreateFieldsPage extends Fragment {
 
     private static final String TAG = "First_page";
 
-    Button add, go;
-    EditText inputBox;
-    ListView list;
+    Button add_btn, go_btn;
+    EditText input_indexes_edtxt;
+    ListView list_listview;
     ArrayList<String> inputs;
     ArrayAdapter<String> adapterOfListView;
 
@@ -38,45 +38,42 @@ public class First_page extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_first_page, container, false);
+        return inflater.inflate(R.layout.fragment_create_fields_page, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        add = view.findViewById(R.id.addBtn);
-        go = view.findViewById(R.id.goBtn);
-        inputBox = view.findViewById(R.id.textBox);
-        list = view.findViewById(R.id.listViewXML);
+        add_btn = view.findViewById(R.id.addBtn);
+        go_btn = view.findViewById(R.id.goBtn);
+        input_indexes_edtxt = view.findViewById(R.id.textBox);
+        list_listview = view.findViewById(R.id.listViewXML);
         inputs = new ArrayList<>();
-        adapterOfListView = new ArrayAdapter<>(getContext(), R.layout.fragment_single_item, R.id.nameTextView, inputs);
+        adapterOfListView = new ArrayAdapter<>(getContext(), R.layout.fragment_field_adapter_item, R.id.nameTextView, inputs);
 
-        list.setAdapter(adapterOfListView);
+        list_listview.setAdapter(adapterOfListView);
 
-        add.setOnClickListener(view1 -> {
-            if (inputBox.getText().toString().equals("")) {
+        add_btn.setOnClickListener(view1 -> {
+            if (input_indexes_edtxt.getText().toString().equals("")) {
                 Toast.makeText(getContext(), "Insert one field in Box", Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            String s = inputBox.getText().toString();
-            boolean isInInputs = false;
+            String input = input_indexes_edtxt.getText().toString();
             for (int i = 0; i < inputs.size(); i++) {
-                if (s.equalsIgnoreCase(inputs.get(i))) isInInputs = true;
+                if (input.equalsIgnoreCase(inputs.get(i))) {
+                    Toast.makeText(getContext(), "this input in exist.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
             }
-            if (isInInputs) {
-                Toast.makeText(getContext(), "this input in exist.", Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-            inputs.add(s);
-            addToShardPerformance(s);
+            inputs.add(input);
+            addToShardPerformance(input);
             adapterOfListView.notifyDataSetChanged();
-            inputBox.getText().clear();
+            input_indexes_edtxt.getText().clear();
         });
 
-        go.setOnClickListener(view12 -> {
+        go_btn.setOnClickListener(view12 -> {
             if (inputs.size() <= 1) {
                 Toast.makeText(getContext(), "Enter two or more field...", Toast.LENGTH_SHORT).show();
                 return;

@@ -16,7 +16,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 
-public class Second_page_Adapter extends RecyclerView.Adapter<Second_page_Adapter.ViewHolder> {
+public class PollPageAdapter extends RecyclerView.Adapter<PollPageAdapter.ViewHolder> {
 
     private static final String TAG = "Second_page_Adapter";
     private static int[] cntOfInput;
@@ -25,9 +25,9 @@ public class Second_page_Adapter extends RecyclerView.Adapter<Second_page_Adapte
     ArrayList<String> inputs;
     SharedPreferences sp;
 
-    public Second_page_Adapter(Context cntX, ArrayList<String> list) {
-        context = cntX;
-        inputs = list;
+    public PollPageAdapter(Context context, ArrayList<String> inputs) {
+        this.context = context;
+        this.inputs = inputs;
         cntOfInput = new int[10];
         for (int i = 0; i < 10; i++) {
             cntOfInput[i] = 0;
@@ -44,7 +44,7 @@ public class Second_page_Adapter extends RecyclerView.Adapter<Second_page_Adapte
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(context).inflate(R.layout.fragment_show_item_adapter, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.fragment_poll_adapter_item, parent, false);
         return new ViewHolder(view);
     }
 

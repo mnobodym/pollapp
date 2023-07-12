@@ -14,11 +14,11 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
-public class Second_page extends Fragment {
+public class PollPage extends Fragment {
 
     ArrayList<String> inputs;
     RecyclerView inputsRecycleView;
-    Second_page_Adapter recycleViewAdapter;
+    PollPageAdapter recycleViewAdapter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -28,7 +28,7 @@ public class Second_page extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_second_page, container, false);
+        return inflater.inflate(R.layout.fragment_poll_page, container, false);
     }
 
     @Override
@@ -37,7 +37,7 @@ public class Second_page extends Fragment {
 
         inputs = getArguments().getStringArrayList("inputs");
         inputsRecycleView = view.findViewById(R.id.itemRecy);
-        recycleViewAdapter = new Second_page_Adapter(getContext(), inputs);
+        recycleViewAdapter = new PollPageAdapter(getContext(), inputs);
 
         inputsRecycleView.setAdapter(recycleViewAdapter);
         inputsRecycleView.setLayoutManager(new LinearLayoutManager(getContext()));

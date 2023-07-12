@@ -6,36 +6,36 @@
     app:startDestination="@id/login_page">
 
     <fragment
-        android:id="@+id/first_page"
-        android:name="com.example.poolapp.First_page"
+        android:id="@+id/create_fields"
+        android:name="com.example.poolapp.CreateFieldsPage"
         android:label="fragment_first_page"
-        tools:layout="@layout/fragment_first_page" >
+        tools:layout="@layout/fragment_create_fields_page" >
         <action
             android:id="@+id/action_first_page_to_home_page"
             app:destination="@id/home_page"
-            app:popUpTo="@id/first_page"
+            app:popUpTo="@id/create_fields"
             app:popUpToInclusive="true"/>
         <action
             android:id="@+id/action_first_page_to_second_page"
-            app:destination="@id/second_page" />
+            app:destination="@id/poll_page" />
     </fragment>
     <fragment
         android:id="@+id/home_page"
-        android:name="com.example.poolapp.Home_page"
+        android:name="com.example.poolapp.HomePage"
         android:label="fragment_home_page"
         tools:layout="@layout/fragment_home_page" >
         <action
             android:id="@+id/action_home_page_to_first_page"
-            app:destination="@id/first_page"/>
+            app:destination="@id/create_fields"/>
     </fragment>
     <fragment
-        android:id="@+id/second_page"
-        android:name="com.example.poolapp.Second_page"
+        android:id="@+id/poll_page"
+        android:name="com.example.poolapp.PollPage"
         android:label="fragment_second_page"
-        tools:layout="@layout/fragment_second_page" />
+        tools:layout="@layout/fragment_poll_page" />
     <fragment
         android:id="@+id/login_page"
-        android:name="com.example.poolapp.Login_page"
+        android:name="com.example.poolapp.LoginPage"
         android:label="fragment_login_page"
         tools:layout="@layout/fragment_login_page" >
         <action

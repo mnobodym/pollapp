@@ -12,9 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-public class Home_page extends Fragment {
+public class HomePage extends Fragment {
 
-    Button createPool;
+    Button create_poll_btn;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -31,8 +31,8 @@ public class Home_page extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        createPool = view.findViewById(R.id.createBtn);
+        create_poll_btn = view.findViewById(R.id.createBtn);
 
-        createPool.setOnClickListener(view1 -> Navigation.findNavController(view1).navigate(R.id.action_home_page_to_first_page));
+        create_poll_btn.setOnClickListener(view1 -> Navigation.findNavController(view1).navigate(R.id.action_home_page_to_first_page));
     }
 }

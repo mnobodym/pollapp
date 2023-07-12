@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="25dp"
-    tools:context=".Second_page_Adapter">
+    tools:context=".PollPageAdapter">
 
 
     <Button

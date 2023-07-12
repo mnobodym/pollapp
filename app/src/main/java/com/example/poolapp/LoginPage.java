@@ -15,7 +15,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class Login_page extends Fragment {
+public class LoginPage extends Fragment {
 
     Button login_btn;
     EditText username_edt, password_edt;
