@@ -1,6 +1,5 @@
 package com.example.poolapp;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -42,14 +41,19 @@ public class Login_page extends Fragment {
         password_edt = view.findViewById(R.id.editTextPassword);
         result_txtView = view.findViewById(R.id.textView2);
 
-        login_btn.setOnClickListener(view1 -> {
-            result_txtView.setText(R.string.loading);
-            Login login = new Login(getContext(), username_edt.getText().toString(), password_edt.getText().toString());
-            login.post_user();
-            if (login.isLogin_auth())
-                Navigation.findNavController(view1).navigate(R.id.action_login_page_to_home_page);
-            else
-                result_txtView.setText(login.getResult());
-        });
+        try {
+            login_btn.setOnClickListener(view1 -> {
+                result_txtView.setText(R.string.loading);
+                Login login = new Login(getContext(), username_edt.getText().toString(), password_edt.getText().toString());
+                login.post_user();
+                if (login.isLogin_auth())
+                    Navigation.findNavController(view1).navigate(R.id.action_login_page_to_home_page);
+                else result_txtView.setText(login.getResult());
+            });
+        } catch (Exception e) {
+            Toast.makeText(getContext(), "error: "+ e, Toast.LENGTH_SHORT).show();
+        }
+
+
     }
 }
