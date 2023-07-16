@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +16,22 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class LoginPage extends Fragment {
+
+    private static final String TAG = "LoginPage";
 
     Button login_btn;
     EditText username_edt, password_edt;
@@ -44,16 +60,49 @@ public class LoginPage extends Fragment {
         try {
             login_btn.setOnClickListener(view1 -> {
                 result_txtView.setText(R.string.loading);
-                Login login = new Login(getContext(), username_edt.getText().toString(), password_edt.getText().toString());
-                login.post_user();
-                if (login.isLogin_auth())
-                    Navigation.findNavController(view1).navigate(R.id.action_login_page_to_home_page);
-                else result_txtView.setText(login.getResult());
+                post_user(username_edt.getText().toString(), password_edt.getText().toString());
             });
         } catch (Exception e) {
-            Toast.makeText(getContext(), "error: "+ e, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "error: " + e, Toast.LENGTH_SHORT).show();
         }
 
 
+    }
+
+    public void post_user(String username, String password) {
+        String url = "http://172.30.112.211/user/login/";
+        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+        StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.i(TAG, "onResponse: " + response);
+                try {
+                    JSONObject obj = new JSONObject(response);
+                    String result = obj.getString("message");
+                    Toast.makeText(getContext(), result, Toast.LENGTH_SHORT).show();
+                    Navigation.findNavController(getView()).navigate(R.id.action_login_page_to_home_page);
+                } catch (Exception e) {
+                    Log.e(TAG, "onResponse: ", e);
+                    Toast.makeText(getContext(), "error: " + e, Toast.LENGTH_SHORT).show();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e(TAG, "onErrorResponse: ", error);
+                result_txtView.setText("username or password is not valid!");
+                Toast.makeText(getContext(), "error: " + error, Toast.LENGTH_SHORT).show();
+            }
+        }) {
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> map = new HashMap<>();
+                map.put("username", username);
+                map.put("password", password);
+                return map;
+            }
+        };
+        requestQueue.add(request);
     }
 }
