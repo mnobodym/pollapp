@@ -91,7 +91,6 @@ public class LoginPage extends Fragment {
             public void onErrorResponse(VolleyError error) {
                 Log.e(TAG, "onErrorResponse: ", error);
                 result_txtView.setText("username or password is not valid!");
-                Toast.makeText(getContext(), "error: " + error, Toast.LENGTH_SHORT).show();
             }
         }) {
             @Nullable
